@@ -20,7 +20,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Section from "./Section";
 import { Link } from "./../util/router";
 import { useAuth } from "./../util/auth";
-import { useDarkMode } from "./../util/theme";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -39,14 +38,12 @@ function Navbar(props) {
   const classes = useStyles();
 
   const auth = useAuth();
-  const darkMode = useDarkMode();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
 
   // Use inverted logo if specified
   // and we are in dark mode
-  const logo =
-    props.logoInverted && darkMode.value ? props.logoInverted : props.logo;
+  const logo = props.logo;
 
   const handleOpenMenu = (event, id) => {
     // Store clicked element (to anchor the menu to)
@@ -136,16 +133,6 @@ function Navbar(props) {
                   </Menu>
                 </>
               )}
-
-              <IconButton
-                color="inherit"
-                onClick={darkMode.toggle}
-                style={{ opacity: 0.6 }}
-              >
-                {darkMode.value && <NightsStayIcon />}
-
-                {!darkMode.value && <WbSunnyIcon />}
-              </IconButton>
             </Hidden>
           </Toolbar>
         </Container>
@@ -184,18 +171,6 @@ function Navbar(props) {
               </ListItem>
             </>
           )}
-
-          <ListItem>
-            <IconButton
-              color="inherit"
-              onClick={darkMode.toggle}
-              style={{ opacity: 0.6 }}
-            >
-              {darkMode.value && <NightsStayIcon />}
-
-              {!darkMode.value && <WbSunnyIcon />}
-            </IconButton>
-          </ListItem>
         </List>
       </Drawer>
     </Section>

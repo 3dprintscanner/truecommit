@@ -6,6 +6,7 @@ import FaqPage from "./faq";
 import ContactPage from "./contact";
 import PricingPage from "./pricing";
 import DashboardPage from "./dashboard";
+import FundraisePage from "./fundraise";
 import AuthPage from "./auth";
 import SettingsPage from "./settings";
 import LegalPage from "./legal";
@@ -26,7 +27,7 @@ function App(props) {
             <>
               <Navbar
                 color="default"
-                logo="https://uploads.divjoy.com/logo.svg"
+                logo="/img/trucommit.svg"
                 logoInverted="https://uploads.divjoy.com/logo-white.svg"
               />
 
@@ -42,6 +43,7 @@ function App(props) {
                 <Route exact path="/pricing" component={PricingPage} />
 
                 <Route exact path="/dashboard" component={DashboardPage} />
+                <Route exact path="/fundraise/:id" component={FundraisePage} />
 
                 <Route exact path="/auth/:type" component={AuthPage} />
 
@@ -61,9 +63,9 @@ function App(props) {
                 size="medium"
                 bgImage=""
                 bgImageOpacity={1}
-                description="A short description of what you do here"
+                description="Accountable Crypto fundraising, straight to the cause"
                 copyright={`© ${new Date().getFullYear()} Company`}
-                logo="https://uploads.divjoy.com/logo.svg"
+                logo="/img/trucommit.svg"
                 logoInverted="https://uploads.divjoy.com/logo-white.svg"
                 sticky={true}
               />
