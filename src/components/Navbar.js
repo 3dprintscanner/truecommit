@@ -16,14 +16,14 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
 import Section from "./Section";
 import { Link } from "./../util/router";
 import { useAuth } from "./../util/auth";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    height: 28,
+    height: 48,
     marginRight: theme.spacing(2),
   },
   drawerList: {
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar(props) {
   const classes = useStyles();
+  const theme = useTheme();
 
   const auth = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -56,7 +57,7 @@ function Navbar(props) {
   };
 
   return (
-    <Section bgColor={props.color} size="auto">
+    <Section bgColor={props.color} size="auto" sx={{margin: theme.spacing(2)}}>
       <AppBar position="static" color="transparent" elevation={0}>
         <Container disableGutters={true}>
           <Toolbar>
