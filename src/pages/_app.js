@@ -18,6 +18,7 @@ import "./../util/analytics";
 import { AuthProvider } from "./../util/auth";
 import { ThemeProvider } from "./../util/theme";
 import { QueryClientProvider } from "./../util/db";
+import Cryptofundraises from "./cryptofundraises";
 
 function App(props) {
   return (
@@ -44,6 +45,8 @@ function App(props) {
                 <Route exact path="/pricing" component={PricingPage} />
 
                 <Route exact path="/dashboard" component={DashboardPage} />
+                <Route exact path="/crypto" component={Cryptofundraises} />
+                <Route exact path="/fundraise/new" component={PricingPage} />
                 <Route exact path="/fundraise/:id" component={FundraisePage} />
                 <Route exact path="/fundraises" component={FundraisesPage} />
 
