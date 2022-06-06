@@ -83,8 +83,6 @@ export default function FormDialog(props) {
     const txFees = committed > 0 ? committed * 0.001 : 0
     const netContribution = committed - txFees - gas
     return (
-
-        
         <div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Contribute</DialogTitle>
