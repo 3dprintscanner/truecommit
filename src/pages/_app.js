@@ -45,10 +45,9 @@ function App(props) {
                 <Route exact path="/pricing" component={PricingPage} />
 
                 <Route exact path="/dashboard" component={DashboardPage} />
-                <Route exact path="/crypto" component={Cryptofundraises} />
                 <Route exact path="/fundraise/new" component={PricingPage} />
                 <Route exact path="/fundraise/:id" component={FundraisePage} />
-                <Route exact path="/fundraises" component={FundraisesPage} />
+                <Route exact path="/fundraises" component={Cryptofundraises} />
 
                 <Route exact path="/auth/:type" component={AuthPage} />
 

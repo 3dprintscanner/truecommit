@@ -99,7 +99,7 @@ function IndexPage(props) {
         subtitle="Back projects not vaporware, link contributions directly to purchases"
         buttonText="Get Started"
         buttonColor="secondary"
-        buttonPath="/pricing"
+        buttonPath="/auth/signin"
       />
       {/* <input type="text" onChange={(event) => setGreetMessage(event.target.value)}></input>
       <button onClick={handleSetFrom}>Click me to set from address</button>
@@ -151,7 +151,7 @@ function IndexPage(props) {
         subtitle=""
         buttonText="Get Started"
         buttonColor="default"
-        buttonPath="/pricing"
+        buttonPath="/auth/signin"
       />
     </>
   );
