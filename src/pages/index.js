@@ -25,7 +25,7 @@ function IndexPage(props) {
   console.log(window.ethereum)
   const [from, setFrom] = useState(null)
 
-  // window.ethereum.on("accountsChanged", (accounts) => { })
+  // window.ethereum.on("accountsChanged", (accounts) => { handle here})
   const [greetMessage, setGreetMessage] = useState(null)
   console.log(greetMessage)
   const ref  = useRef(0)
@@ -45,7 +45,6 @@ function IndexPage(props) {
   }
 
   checkGreeting()
-
   return (
     <>
       <Meta />
@@ -57,7 +56,7 @@ function IndexPage(props) {
         title="TrueCommit"
         subtitle="Back projects not vaporware, link contributions directly to purchases"
         buttonText="Get Started"
-        buttonColor="default"
+        buttonColor="secondary"
         buttonPath="/pricing"
       />
       <input type="text" onChange={(event) => setGreetMessage(event.target.value)}></input>

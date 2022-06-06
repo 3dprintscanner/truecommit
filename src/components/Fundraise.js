@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Paper from '@material-ui/core/Paper'
 import Button from "@material-ui/core/Button";
 import Section from "./Section";
-import SectionHeader from "./SectionHeader";
 import { Link } from "./../util/router";
 import Avatar from "@material-ui/core/Avatar";
 import LinkMui from "@material-ui/core/Link";
@@ -17,9 +15,7 @@ import * as colors from "@material-ui/core/colors";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import FundraiseModal from './FundraiseModal'
 
 const sampleData = {
     title: 'Camera Equipment for my new documentary on Mexico',
@@ -84,16 +80,22 @@ const useStyles = makeStyles((theme) => ({
     listItem: {
         border: `2px solid ${colors.grey[200]}`,
         borderRadius: theme.spacing(2),
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        overflow: 'hidden',
+        paddingRight: 0
     },
     vaultProgress: {
-        backgroundColor: colors.grey[300],
+        backgroundColor: colors.grey[200],
         display: 'flex',
         alignItems: 'flex-start',
         flexGrow: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         gap: theme.spacing(2)
+    },
+    pepo: {
+        height: theme.spacing(2),
+        borderRadius: theme.spacing(1)
     }
 }));
 
@@ -103,7 +105,7 @@ function Fundraise(props) {
 
     const classes = useStyles();
     const theme = useTheme();
-
+    const [open, setOpen] = useState(false);
 
     const verifyUser = () => {
         if (!sampleData.owner.verified) {
@@ -123,9 +125,9 @@ function Fundraise(props) {
                 <ListItem className={classes.listItem}>
                     <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
                         <Grid item>
-                            <img src={vault.image} />
+                            <img src={vault.image} style={{marginRight: theme.spacing(2)}}/>
                         </Grid>
-                        <Grid item lg={6}>
+                        <Grid item container lg={6} alignItems='center'>
                             <Box>
                                 <Typography variant="h5">{vault.item}</Typography>
                                 <Typography variant="subtitle1">{vault.goal}</Typography>
@@ -134,11 +136,11 @@ function Fundraise(props) {
                         </Grid>
                         <Grid item className={classes.vaultProgress} row >
                             <Box sx={{ width: '100%', maxWidth: 300 }}>
-                                <LinearProgress variant="determinate" value={progressValue} color="primary" />
+                                <LinearProgress variant="determinate" value={progressValue} color="primary" classes={{root: classes.pepo}} />
                             </Box>
                             <Grid item>
                                 <Typography variant="h6">{`${progressValue}% Funded`}</Typography>
-                                <Typography variant="subtitle1">{`${vault.current} of ${vault.goal} ZENIQ`}</Typography>
+                                <Typography variant="body2">{`${vault.current} of ${vault.goal} ZENIQ`}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -148,8 +150,8 @@ function Fundraise(props) {
         )
     }
 
-    console.log(theme)
     return (
+        <>
         <Container>
             <Grid container spacing={4}>
                 <Grid item container lg={7} spacing={2}>
@@ -159,22 +161,22 @@ function Fundraise(props) {
                     <Grid item row>
                         <img src={sampleData.image} className={classes.titleImage} />
                     </Grid>
-                    <Grid container row item xs={12} spacing={2} >
+                    <Grid container row item xs={12}>
                         <Box className={classes.paper}>
                             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} className={classes.owner}>
                                 <Box>
-                                    <Avatar src={sampleData.owner.image} sx={{ width: 72, height: 72 }} />
+                                    <Avatar src={sampleData.owner.image} style={{ width: 64, height: 64, margin: theme.spacing(2) }} />
                                 </Box>
                                 <Box container>
                                     <Typography variant="subtitle2">Campaign Creator</Typography>
                                     <Typography variant="h5">{`${sampleData.owner.name} `}{verifyUser()}</Typography>
                                     <LinkMui component={Link} to="/elprofile"> View Profile</LinkMui>
-                                </Box>
+                                </Box>  
                             </Box>
                         </Box>
                     </Grid>
                     <Grid row item>
-                        <Typography>{sampleData.description}</Typography>
+                        <Typography variant="body2  ">{sampleData.description}</Typography>
                         <LinkMui component={Link} to="/elprofile"> Read More</LinkMui>
                     </Grid>
 
@@ -195,10 +197,10 @@ function Fundraise(props) {
                                         <Typography variant="subtitle2">1 of 3 Vaults Funded</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <LinearProgress variant="determinate" value={getProgress()} color="secondary" />
+                                        <LinearProgress variant="determinate" value={getProgress()} color="secondary" classes={{root: classes.pepo}}  />
                                     </Grid>
                                     <Grid item>
-                                        <Button variant="contained" color="secondary">Back This Campaign</Button>
+                                        <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>Back This Campaign</Button>
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -227,6 +229,8 @@ function Fundraise(props) {
                 </Grid>
             </Grid>
         </Container>
+        <FundraiseModal open={open} setOpen={setOpen} contractData={sampleData}/>
+        </>
     );
 }
 

@@ -140,16 +140,6 @@ function Footer(props) {
                   >
                     <ListItemText>Contact</ListItemText>
                   </ListItem>
-                  <ListItem
-                    button={true}
-                    component="a"
-                    href="https://medium.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className={classes.listItem}
-                  >
-                    <ListItemText>Blog</ListItemText>
-                  </ListItem>
                 </List>
               </Grid>
               <Grid item={true} xs={12} md={4}>

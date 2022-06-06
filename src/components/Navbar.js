@@ -57,7 +57,7 @@ function Navbar(props) {
   };
 
   return (
-    <Section bgColor={props.color} size="auto" sx={{margin: theme.spacing(2)}}>
+    <Section bgColor={props.color} size="auto" sx={{ margin: theme.spacing(2) }}>
       <AppBar position="static" color="transparent" elevation={0}>
         <Container disableGutters={true}>
           <Toolbar>
@@ -120,8 +120,14 @@ function Navbar(props) {
                     <MenuItem component={Link} to="/dashboard">
                       Dashboard
                     </MenuItem>
+                    <MenuItem component={Link} to="/fundraises">
+                      Fundraises 📈
+                    </MenuItem>
+                    <ListItem component={Link} to="/fundraises" button={true}>
+                      <ListItemText>New Fundraise 💰</ListItemText>
+                    </ListItem>
                     <MenuItem component={Link} to="/settings/general">
-                      Settings
+                      Settings ⚙️
                     </MenuItem>
                     <Divider />
                     <MenuItem

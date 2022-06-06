@@ -7,6 +7,7 @@ import ContactPage from "./contact";
 import PricingPage from "./pricing";
 import DashboardPage from "./dashboard";
 import FundraisePage from "./fundraise";
+import FundraisesPage from "./fundraises";
 import AuthPage from "./auth";
 import SettingsPage from "./settings";
 import LegalPage from "./legal";
@@ -44,6 +45,7 @@ function App(props) {
 
                 <Route exact path="/dashboard" component={DashboardPage} />
                 <Route exact path="/fundraise/:id" component={FundraisePage} />
+                <Route exact path="/fundraises" component={FundraisesPage} />
 
                 <Route exact path="/auth/:type" component={AuthPage} />
 

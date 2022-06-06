@@ -26,7 +26,7 @@ function TestimonialsSection(props) {
   const items = [
     {
       avatar: "https://uploads.divjoy.com/pravatar-150x-5.jpeg",
-      name: "Sarah Kline",
+      name: "Roland Puntaier",
       testimonial:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
       company: "Company",

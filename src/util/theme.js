@@ -16,7 +16,7 @@ const themeConfig = {
       type: "light",
       primary: {
         // Use hue from colors or hex
-        main: colors.indigo["500"],
+        main: '#34148b',
         // Uncomment to specify light/dark
         // shades instead of automatically
         // calculating from above value.
@@ -60,7 +60,7 @@ const themeConfig = {
   common: {
     typography: {
       fontSize: 14,
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"DM Sans", "Helvetica", "Arial", sans-serif',
       // Uncomment to make button lowercase
       // button: { textTransform: "none" },
     },
