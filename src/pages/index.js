@@ -54,7 +54,7 @@ function IndexPage(props) {
 
   const handleSetFrom = async () => {
     const result = await window.ethereum.request({method: 'eth_requestAccounts'})
-    
+
     setFrom(result[0])
     window.alert(result)
   }
@@ -93,13 +93,14 @@ function IndexPage(props) {
       <HeroSection
         bgColor="primary"
         size="large"
-        bgImage="https://source.unsplash.com/ugnrXk1129g/1600x800"
+        bgImage="/img/heroimage.png"
         bgImageOpacity={0.3}
-        title="TrueCommit"
-        subtitle="Back projects not vaporware, link contributions directly to purchases"
-        buttonText="Get Started"
+        title="Back projects, not vaporware"
+        subtitle="True Commit builds in accountability into funding, directly linking investments to end purposes"
+        subtitleStyle="h6"
+        buttonText="View campaigns"
         buttonColor="secondary"
-        buttonPath="/auth/signin"
+        buttonPath="/fundraises"
       />
       {/* <input type="text" onChange={(event) => setGreetMessage(event.target.value)}></input>
       <button onClick={handleSetFrom}>Click me to set from address</button>
@@ -111,8 +112,8 @@ function IndexPage(props) {
         size="medium"
         bgImage=""
         bgImageOpacity={1}
-        title="Features"
-        subtitle="All the features you need to move faster"
+        title="Smarter, accountable funding"
+        subtitle="Powered by smart contracts"
       />
       <ClientsSection
         bgColor="light"
