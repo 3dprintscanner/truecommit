@@ -21,7 +21,7 @@ import Web3 from 'web3'
 const sampleData = {
     title: 'Camera Equipment for my new documentary on Mexico',
     image: '/img/campaignimage.jpg',
-    description: 'Angelo jones is fundraising for his new documentary on the streets of playa del carmen, talking to the locals and eating tacos.',
+    description: '"Monorail Stories" is a casual-adventure game focusing on extraordinary things happening to ordinary people. Board the monorail and experience a special story about humanity, friendships, and intertwined destinies manifesting during the everyday commute \n Silvie and Ahmal travel each day on the same Monorail, but at different times and opposite directions. They will meet different people and make different choices, but they don’t know they are sharing a common story.',
     owner: {
         name: "Angelo Jones",
         image: '/img/profileimage.jpg',
