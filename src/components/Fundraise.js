@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
     },
     titleImage: {
         width: '100%',
-        height: 'auto'
+        height: 'auto',
+        borderRadius: theme.spacing(2)
     },
     icon: {
         color: colors.green[300]
@@ -229,7 +230,7 @@ function Fundraise(props) {
                         <Typography variant='h4'>{name}</Typography>
                     </Grid>
                     <Grid item row>
-                        <img src={sampleData.image} className={classes.titleImage} />
+                        <img src={`https://picsum.photos/640/300?random=${Math.floor(Math.random() * 100)}`} className={classes.titleImage} />
                     </Grid>
                     <Grid container row item xs={12}>
                         <Box className={classes.paper}>

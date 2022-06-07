@@ -115,15 +115,9 @@ function Navbar(props) {
                       horizontal: "center",
                     }}
                   >
-                    <MenuItem component={Link} to="/dashboard">
-                      Dashboard
-                    </MenuItem>
                     <MenuItem component={Link} to="/fundraises">
-                      Fundraises 📈
+                      Campaigns 📈
                     </MenuItem>
-                    <ListItem component={Link} to="/fundraises" button={true}>
-                      <ListItemText>New Fundraise 💰</ListItemText>
-                    </ListItem>
                     <MenuItem component={Link} to="/settings/general">
                       Settings ⚙️
                     </MenuItem>

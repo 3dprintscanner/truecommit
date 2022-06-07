@@ -33,7 +33,7 @@ function FeaturesSection(props) {
 
   const items = [
     {
-      title: "Instil trust in your investors",
+      title: "Instill trust in your investors",
       body: "As a fundraiser, give full assurance to funding parties that their money will be spent for the purposes you've outlined",
       image: "/img/trust.png",
     },
