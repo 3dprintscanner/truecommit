@@ -18,6 +18,7 @@ function HeroSection(props) {
           <SectionHeader
             title={props.title}
             subtitle={props.subtitle}
+            subtitleStyle={props.subtitleStyle}
             size={2}
           />
           <Button

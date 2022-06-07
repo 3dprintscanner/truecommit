@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 function SectionHeader(props) {
   const classes = useStyles();
 
-  const { subtitle, title, size, className, ...otherProps } = props;
+  const { subtitle, subtitleStyle, title, size, className, ...otherProps } = props;
 
   // Render nothing if no title or subtitle
   if (!title && !subtitle) {
@@ -46,7 +46,7 @@ function SectionHeader(props) {
       )}
 
       {subtitle && (
-        <Typography variant="subtitle1" className={classes.subtitle}>
+        <Typography variant={subtitleStyle ? subtitleStyle : "subtitle1"} className={classes.subtitle}>
           {subtitle}
         </Typography>
       )}
