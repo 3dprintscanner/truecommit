@@ -18,10 +18,11 @@ import { useRouter } from "./../util/router";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Web3 from 'web3'
-import ABI from '../data/f6d72e584f9c6e176d0b340e8f9097a9.json'
+import Box from "@material-ui/core/Box";
 import FundraiseFactory from '../data/contracts/FundraiseFactory.sol/FundraiseFactory.json'
 import FundRaise from '../data/contracts/Fundraise.sol/FundRaise.json'
 import FundraiseForm from './FundraiseForm';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         zIndex: 999
     }
-
 }));
 
 const dummyData = [
@@ -172,6 +172,7 @@ const ThisCard = (props) => {
     const { id, } = props
     const [name, setName] = useState('null')
     const [goal, setGoal] = useState('null')
+    const [balance, setBalance] = useState(0)
 
     const handleClick = (id) => {
         router.push(`/fundraise/${id}`)
@@ -189,6 +190,22 @@ const ThisCard = (props) => {
             const contract = new web3.eth.Contract(FundRaise['abi'], id);
             const name = await contract.methods.name().call();
             setName(name)
+        }
+
+        doWork();
+    }, [id])
+
+
+    useEffect(() => {
+        console.log('balance effect')
+        const web3 = new Web3(window.ethereum)
+        const doWork = async () => {
+            if (!id) {
+                return
+            }
+            const contract = new web3.eth.Contract(FundRaise['abi'], id);
+            const balance = await web3.eth.getBalance(id);
+            setBalance(balance)
         }
 
         doWork();
@@ -216,7 +233,7 @@ const ThisCard = (props) => {
                     <Avatar aria-label="recipe" className={classes.avatar} />
                 }
                 title={id}
-                subheader={`${goal} ZENIQ`}
+                subheader={` ${balance / 1000000000000000000} of ${goal} ZENIQ`}
             />
             <CardMedia
                 className={classes.media}
@@ -243,7 +260,6 @@ const ThisCard = (props) => {
 const Cryptofundraises = (props) => {
     const classes = useStyles();
 
-    const [from, setFrom] = useState(null)
     const [raises, setRaises] = useState(null)
     const [open, setOpen] = useState(false)
     const [fundraiseNames, setFundraiseNames] = useState({})
@@ -263,7 +279,7 @@ const Cryptofundraises = (props) => {
 
     return (
         <Container>
-            <Typography variant='h4'>Current Campaigns</Typography>
+            <Typography variant='h4' gutterBottom>Current Campaigns</Typography>
             <Grid container direction='row' spacing={2} justifyContent='space-around' alignItems='flex-start'>
                 {raises && raises.map((d, idx) => (
                     <Grid item key={idx} lg={3} xl={3} className={classes.productGrid}>
@@ -271,10 +287,12 @@ const Cryptofundraises = (props) => {
                     </Grid>
                 ))}
             </Grid>
-            <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => setOpen(!open)}>
-                <AddIcon />
-            </Fab>
-            <FundraiseForm open={open} setOpen={setOpen} contractData={{}}/>
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => setOpen(!open)}>
+                    <AddIcon />
+                </Fab>
+            </Box>
+            <FundraiseForm open={open} setOpen={setOpen} contractData={{}} />
         </Container>
     )
 }

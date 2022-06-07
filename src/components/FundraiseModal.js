@@ -56,6 +56,8 @@ export default function FormDialog(props) {
         return totalCommitted;
     }
 
+   
+
     const mapVault = (vault, index) => {
         
         console.log(sliderValues, 'values')
@@ -112,7 +114,7 @@ export default function FormDialog(props) {
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="primary" variant="contained">
+                    <Button onClick={fundContract} color="primary" variant="contained">
                         Pay
                     </Button>
                 </DialogActions>

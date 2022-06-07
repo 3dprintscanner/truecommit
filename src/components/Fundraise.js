@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Section from "./Section";
-import { Link } from "./../util/router";
+import { Link, useRouter } from "./../util/router";
 import Avatar from "@material-ui/core/Avatar";
 import LinkMui from "@material-ui/core/Link";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { verifyMessage } from "ethers/lib/utils";
 import VerifiedUserOutlinedIcon from '@material-ui/icons/VerifiedUserOutlined';
 import * as colors from "@material-ui/core/colors";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import FundraiseModal from './FundraiseModal'
+import CryptoFundraiseModal from './CryptoFundraiseModal'
+import FundRaiseABI from '../data/contracts/Fundraise.sol/FundRaise.json'
+import Web3 from 'web3'
 
 const sampleData = {
     title: 'Camera Equipment for my new documentary on Mexico',
@@ -102,10 +103,67 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Fundraise(props) {
-
+    const router = useRouter();
+    const id = router.query.id
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [from, setFrom] = useState(null)
+
+    const [name, setName] = useState('')
+    const [goal, setGoal] = useState(null)
+    const [balance, setBalance] = useState(0)
+    
+
+    useEffect(() => {
+        console.log('raises effect')
+        const web3 = new Web3(window.ethereum)
+        const doWork = async () => {
+            if (!id) {
+                return
+            }
+            const contract = new web3.eth.Contract(FundRaiseABI['abi'], id);
+            const name = await contract.methods.name().call();
+            setName(name)
+        }
+
+        doWork();
+    }, [id])
+
+    const changeBalance = () =>{
+        
+    }
+    
+    useEffect(() => {
+        console.log('balance effect')
+        const web3 = new Web3(window.ethereum)
+        const doWork = async () => {
+            if (!id) {
+                return
+            }
+            const contract = new web3.eth.Contract(FundRaiseABI['abi'], id);
+            const balance = await web3.eth.getBalance(id);
+            setBalance(balance)
+        }
+
+        doWork();
+    }, [id, changeBalance])
+
+    useEffect(() => {
+        console.log('raises effect')
+        const web3 = new Web3(window.ethereum)
+        const doWork = async () => {
+            if (!id) {
+                return
+            }
+            const contract = new web3.eth.Contract(FundRaiseABI['abi'], id);
+            const goal = await contract.methods.goal().call();
+            setGoal(goal)
+        }
+
+        doWork();
+    }, [id])
+
 
     const verifyUser = () => {
         if (!sampleData.owner.verified) {
@@ -115,7 +173,7 @@ function Fundraise(props) {
     }
 
     const getProgress = () => {
-        return Math.round((sampleData.current / sampleData.goal) * 100)
+        return Math.round(((balance /1000000000000000000) / goal) * 100)
     }
 
     const makeListItem = (vault) => {
@@ -150,13 +208,25 @@ function Fundraise(props) {
         )
     }
 
+    useEffect(() => {
+        const doWork = async () => {
+            const result = await window.ethereum.request({ method: 'eth_requestAccounts' })
+            setFrom(result[0])
+        }
+        doWork();
+    }, [])
+
+    
+
+
     return (
         <>
         <Container>
             <Grid container spacing={4}>
+                
                 <Grid item container lg={7} spacing={2}>
                     <Grid item row>
-                        <Typography variant='h4'>{sampleData.title}</Typography>
+                        <Typography variant='h4'>{name}</Typography>
                     </Grid>
                     <Grid item row>
                         <img src={sampleData.image} className={classes.titleImage} />
@@ -179,7 +249,7 @@ function Fundraise(props) {
                         <Typography variant="body2  ">{sampleData.description}</Typography>
                         <LinkMui component={Link} to="/elprofile"> Read More</LinkMui>
                     </Grid>
-
+                    
                 </Grid>
                 <Grid item container lg={5}>
                     <Grid row container className={classes.side}>
@@ -191,7 +261,7 @@ function Fundraise(props) {
                             <Box className={classes.fundTarget}>
                                 <Grid container spacing={2} direction="column">
                                     <Grid item>
-                                        <Typography variant="h6">{sampleData.current} of {sampleData.goal} Zeniq</Typography>
+                                        <Typography variant="h6">{balance / 1000000000000000000} of {goal} Zeniq</Typography>
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2">1 of 3 Vaults Funded</Typography>
@@ -229,7 +299,7 @@ function Fundraise(props) {
                 </Grid>
             </Grid>
         </Container>
-        <FundraiseModal open={open} setOpen={setOpen} contractData={sampleData}/>
+        <CryptoFundraiseModal open={open} setOpen={setOpen} id={id} changeBalance={changeBalance}/>
         </>
     );
 }

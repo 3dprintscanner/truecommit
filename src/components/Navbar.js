@@ -10,8 +10,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
