@@ -54,7 +54,7 @@ function IndexPage(props) {
 
   const handleSetFrom = async () => {
     const result = await window.ethereum.request({method: 'eth_requestAccounts'})
-    
+
     setFrom(result[0])
     window.alert(result)
   }
@@ -93,10 +93,10 @@ function IndexPage(props) {
       <HeroSection
         bgColor="primary"
         size="large"
-        bgImage="https://source.unsplash.com/ugnrXk1129g/1600x800"
+        bgImage="/img/heroimage.png"
         bgImageOpacity={0.3}
-        title="TrueCommit"
-        subtitle="Back projects not vaporware, link contributions directly to purchases"
+        title="Back projects, not vaporware"
+        subtitle="True Commit builds in accountability into funding, directly linking investments to end purchases"
         buttonText="Get Started"
         buttonColor="secondary"
         buttonPath="/auth/signin"

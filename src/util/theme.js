@@ -59,8 +59,24 @@ const themeConfig = {
   // Values for both themes
   common: {
     typography: {
-      fontSize: 14,
+      fontSize: 18,
       fontFamily: '"DM Sans", "Helvetica", "Arial", sans-serif',
+      h1: {
+        "fontWeight": 800,
+      },
+      h2: {
+        "fontWeight": 800,
+      },
+      h3: {
+        "fontWeight": 800,
+      },
+      h4: {
+        "fontWeight": 800,
+      },
+      h5: {
+        "fontWeight": 800,
+      },
+
       // Uncomment to make button lowercase
       // button: { textTransform: "none" },
     },

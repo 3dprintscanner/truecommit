@@ -12,14 +12,13 @@ function HeroSection(props) {
       bgColor={props.bgColor}
       size={props.size}
       bgImage={props.bgImage}
-      bgImageOpacity={props.bgImageOpacity}
     >
       <Container>
         <Box textAlign="center">
           <SectionHeader
             title={props.title}
             subtitle={props.subtitle}
-            size={4}
+            size={2}
           />
           <Button
             component={Link}
