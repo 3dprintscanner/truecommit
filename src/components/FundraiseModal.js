@@ -21,7 +21,7 @@ export default function FormDialog(props) {
     const [ sliderValues, setSliderValues ] = useState([]);
     const [ contribution, setContribution ] = useState(0);
 
-    const handleClickOpen = () => {
+    const handleClickOpen = () => { 
         setOpen(true);
     };
 

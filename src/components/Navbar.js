@@ -16,7 +16,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Section from "./Section";
 import { Link } from "./../util/router";
-import { useAuth } from "./../util/auth";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +35,6 @@ function Navbar(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const auth = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuState, setMenuState] = useState(null);
 
@@ -74,13 +72,6 @@ function Navbar(props) {
               </IconButton>
             </Hidden>
             <Hidden xsDown={true} implementation="css">
-              {!auth.user && (
-                <Button component={Link} to="/auth/signin" color="inherit">
-                  Sign in
-                </Button>
-              )}
-
-              {auth.user && (
                 <>
                   <Button
                     color="inherit"
@@ -122,16 +113,8 @@ function Navbar(props) {
                       Settings ⚙️
                     </MenuItem>
                     <Divider />
-                    <MenuItem
-                      onClick={(event) => {
-                        auth.signout();
-                      }}
-                    >
-                      Signout
-                    </MenuItem>
                   </Menu>
                 </>
-              )}
             </Hidden>
           </Toolbar>
         </Container>
@@ -145,31 +128,6 @@ function Navbar(props) {
           className={classes.drawerList}
           onClick={() => setDrawerOpen(false)}
         >
-          {!auth.user && (
-            <ListItem component={Link} to="/auth/signin" button={true}>
-              <ListItemText>Sign in</ListItemText>
-            </ListItem>
-          )}
-
-          {auth.user && (
-            <>
-              <ListItem component={Link} to="/dashboard" button={true}>
-                <ListItemText>Dashboard</ListItemText>
-              </ListItem>
-              <ListItem component={Link} to="/settings/general" button={true}>
-                <ListItemText>Settings</ListItemText>
-              </ListItem>
-              <Divider />
-              <ListItem
-                button={true}
-                onClick={(event) => {
-                  auth.signout();
-                }}
-              >
-                <ListItemText>Sign out</ListItemText>
-              </ListItem>
-            </>
-          )}
         </List>
       </Drawer>
     </Section>

@@ -24,7 +24,6 @@ function App(props) {
   return (
     <QueryClientProvider>
       <ThemeProvider>
-        <AuthProvider>
           <Router>
             <>
               <Navbar
@@ -75,7 +74,6 @@ function App(props) {
               />
             </>
           </Router>
-        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

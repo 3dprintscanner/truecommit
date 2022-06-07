@@ -151,8 +151,8 @@ function IndexPage(props) {
         title="Ready to get started?"
         subtitle=""
         buttonText="Get Started"
-        buttonColor="default"
-        buttonPath="/auth/signin"
+        buttonColor="secondary"
+        buttonPath="/fundraises"
       />
     </>
   );

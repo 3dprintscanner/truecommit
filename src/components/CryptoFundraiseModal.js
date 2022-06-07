@@ -57,7 +57,7 @@ export default function CryptoFundraiseModal(props) {
                 <DialogTitle id="form-dialog-title">Contribute</DialogTitle>
                 <DialogContent>
                     {loading ? <CircularProgress/> : <><DialogContentText>
-                        Contribute to the fundraise here and distribute your funds into each vault
+                        Contribute to the fundraise here
                     </DialogContentText>
                     <TextField
                         autoFocus

@@ -89,7 +89,7 @@ export default function FundraiseForm(props) {
                         Cancel
                     </Button>
                     <Button onClick={createFundraise} color="primary" variant="contained">
-                        Pay
+                        Create
                     </Button>
                 </DialogActions>
             </Dialog>
